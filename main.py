@@ -25,21 +25,17 @@ def __egcd(a, b):
 def __modinv(a, m):
     g, x, y = __egcd(a, m)
     if g != 1:
-        return False
+        raise Exception
     else:
         return x % m
 	
 def geted(phi):
-    d = False
     e = 65537
-    while True:
-        if d != False:
-            return (e, d)
-        else:
-            e += 1
-            while not isPrime(e):
-                e += 1
-            d = __modinv(e, phi)
+    d = __modinv(e, phi)
+            #e += 1
+            #while not isPrime(e):
+            #    e += 1
+    return (e, d)
 
 def encrypt(message, e, n):
     message = message ** e % n
